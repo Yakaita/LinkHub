@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
                     Sign Out
                 </li>
                 <li className=" bg-black px-5 py-2 text-white">
-                    <Link href="/admin">Dashboard</Link>
+                    <Link href="/dashboard">Dashboard</Link>
                 </li>
             </ul>
         </div>
