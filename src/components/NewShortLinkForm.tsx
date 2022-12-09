@@ -19,7 +19,7 @@ const NewShortLinkForm: React.FC = () => {
 
     const { mutate } = trpc.shortLinks.createLink.useMutation({
         onSuccess: () => {
-            router.push('/admin');
+            router.push('/dashboard');
             setLoading(false);
         },
     });
