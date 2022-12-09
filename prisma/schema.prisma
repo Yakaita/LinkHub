@@ -4,9 +4,10 @@
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
@@ -17,12 +18,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String?  @db.Text
-  access_token      String?  @db.Text
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String?  @db.Text
+  id_token          String? @db.Text
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -38,13 +39,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String      @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?     @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Hub           Hub[]
+  ShortLink     ShortLink[]
 }
 
 model VerificationToken {
@@ -55,7 +58,48 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-
 /////////////////////////////
 //  actual page stuff now  //
 /////////////////////////////
+enum HubVisibility {
+  PUBLIC
+  PRIVATE
+}
+
+model Hub {
+  id          String @id
+  owner       User   @relation(fields: [userId], references: [id])
+  name        String
+  description String
+
+  visbility    HubVisibility @default(PUBLIC)
+  adultContent Boolean       @default(false)
+  links        HubLink[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  userId    String
+}
+
+model HubLink {
+  id   String @id @default(cuid())
+  text String
+  url  String @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  Hub       Hub?     @relation(fields: [hubId], references: [id])
+  hubId     String?
+}
+
+model ShortLink {
+  id          String  @id @default(cuid())
+  url         String  @db.Text
+  slug        String  @unique
+  description String?
+  owner       User    @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  userId    String
+}

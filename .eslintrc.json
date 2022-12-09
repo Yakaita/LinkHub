@@ -10,6 +10,8 @@
     ],
     "rules": {
         "@typescript-eslint/consistent-type-imports": "warn",
-        "indent": ["warn", 4]
+        "indent": "off",
+        "@typescript-eslint/indent": ["error"],
+        "semi": ["warn"]
     }
 }
