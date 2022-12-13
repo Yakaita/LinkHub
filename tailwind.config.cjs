@@ -4,6 +4,7 @@ module.exports = {
     theme: {
         fontFamily: {
             inter: ['"Inter"'],
+            satoshi: ['"Satoshi"'],
         },
         extend: {
             boxShadow: {
