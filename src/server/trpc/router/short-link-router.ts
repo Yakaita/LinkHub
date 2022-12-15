@@ -55,9 +55,9 @@ export const shortLinkRouter = router({
                 userId: ctx.session?.user?.id,
                 AND: input.keywords ? [{
                     OR: [
-                        { url: { contains: input.keywords } },
-                        { slug: { contains: input.keywords } },
-                        { description: { contains: input.keywords } },
+                        { url: { mode: 'sensitive', contains: input.keywords } },
+                        { slug: { mode: 'sensitive',contains: input.keywords } },
+                        { description: { mode: 'sensitive', contains: input.keywords } },
                     ]
                 }] : undefined
             }
