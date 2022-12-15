@@ -7,8 +7,8 @@ module.exports = {
             satoshi: ['"Satoshi"'],
         },
         extend: {
-            boxShadow: {
-                'offset-black': '5px 5px black',
+            colors: {
+                lightGray: '#F7F8FB',
             },
         },
     },
