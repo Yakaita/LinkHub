@@ -41,15 +41,12 @@ const NewShortLinkForm: React.FC = () => {
     };
 
     return (
-        <form
-            onSubmit={handleSubmit(processSubmit)}
-            className="mx-auto max-w-7xl"
-        >
-            <h2 className="mb-4 text-4xl font-black">New Short Link</h2>
+        <form onSubmit={handleSubmit(processSubmit)} className="">
+            <h2 className="mb-4 text-4xl font-black text-gray-500">New Short Link</h2>
             <div className="flex flex-col gap-2">
                 <input
                     id="url"
-                    className="border-2 border-black py-2 px-4 focus:outline-none"
+                    className="rounded-md border-2  border-gray-500/25 py-2 px-4 focus:outline-none"
                     type="text"
                     placeholder="Enter URL"
                     {...register('url', {
@@ -65,7 +62,7 @@ const NewShortLinkForm: React.FC = () => {
                 />
                 <input
                     id="description"
-                    className="border-2 border-black py-2 px-4 focus:outline-none"
+                    className="rounded-md border-2  border-gray-500/25 py-2 px-4 focus:outline-none"
                     type="text"
                     placeholder="Enter Description"
                     {...register('description')}
@@ -74,14 +71,13 @@ const NewShortLinkForm: React.FC = () => {
                     <div className="flex gap-2">
                         <input
                             id="slug"
-                            className="border-2 border-black py-2 px-4 focus:outline-none"
+                            className="rounded-md border-2 border-gray-500/25 py-2 px-4 focus:outline-none"
                             type="text"
                             placeholder="Enter Slug"
                             {...register('slug', {
                                 required: {
                                     value: true,
-                                    message:
-                                        'Please enter a slug or generate one',
+                                    message: 'Please enter a slug or generate one',
                                 },
                                 pattern: {
                                     value: /^[a-zA-Z0-9_-]+$/i,
@@ -89,19 +85,11 @@ const NewShortLinkForm: React.FC = () => {
                                 },
                             })}
                         />
-                        <button
-                            onClick={generateSlug}
-                            className="border-2 border-black bg-black py-2 px-4 text-white"
-                        >
+                        <button onClick={generateSlug} className="rounded-md bg-gray-500 py-2 px-4 font-satoshi font-bold text-gray-200">
                             Randomize
                         </button>
                     </div>
-                    <button
-                        type="submit"
-                        isLoading={loading}
-                        loadingText="Creating your link..."
-                        className="border-2 border-black bg-black py-2 px-4 text-white"
-                    >
+                    <button type="submit" isLoading={loading} loadingText="Creating your link..." className="rounded-md bg-gray-500 py-2 px-4 font-satoshi font-bold text-gray-200">
                         Create Link
                     </button>
                 </div>
